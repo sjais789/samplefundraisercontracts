@@ -13,3 +13,10 @@ contract raiseit{
         goal = _goal;
         closetime = now + _finaltime;
     }
+function add() payable public {
+        require(now < endTime, "Fundraising is closed.");
+        require(total < goal, "We reached a goal.");
+        require(msg.value > 0, "You need to send some ether");
+        donations[msg.sender] += msg.value; 
+        total += msg.value;
+    }
